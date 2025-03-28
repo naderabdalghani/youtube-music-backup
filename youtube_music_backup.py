@@ -111,13 +111,16 @@ if __name__ == "__main__":
     playlists = fetch_all_playlists(service)
     today = datetime.datetime.now().strftime("%Y-%m-%d")
 
+    output_dir = "/path/to/backup/"
+    os.makedirs(output_dir, exist_ok=True)
+
     for playlist in playlists:
         print(f"Fetching playlist: {playlist['title']}")
         playlist_songs = fetch_playlist_items(service, playlist["playlistId"])
 
         # Generate a timestamped, safe filename
         safe_playlist_name = sanitize_filename(playlist["title"])
-        filename = f"{safe_playlist_name}_{today}.csv"
+        filename = os.path.join(output_dir, f"{safe_playlist_name}_{today}.csv")
 
         # Save data to CSV
         export_to_csv(playlist_songs, filename)
