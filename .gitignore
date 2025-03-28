@@ -1,0 +1,9 @@
+# Virtual environment
+venv/
+
+# CSV exports
+*.csv
+
+# Credentials
+*.json
+.env
