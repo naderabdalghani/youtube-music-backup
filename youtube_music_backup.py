@@ -1,16 +1,19 @@
-import os
 import csv
 import datetime
-import google.auth
+import os
+
+from dotenv import load_dotenv
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
+
+load_dotenv()
 
 def authenticate():
     """Authenticate using environment variables from Zsh."""
     creds = Credentials.from_authorized_user_info({
-        "client_id": os.getenv("GOOGLE_CLIENT_ID"),
-        "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
-        "refresh_token": os.getenv("GOOGLE_REFRESH_TOKEN"),
+        "client_id": os.getenv("CLIENT_ID"),
+        "client_secret": os.getenv("CLIENT_SECRET"),
+        "refresh_token": os.getenv("REFRESH_TOKEN"),
         "token_uri": "https://oauth2.googleapis.com/token"
     })
     return build("youtube", "v3", credentials=creds)

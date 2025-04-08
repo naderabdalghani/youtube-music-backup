@@ -10,7 +10,7 @@ def get_credentials():
 
 if __name__ == "__main__":
     creds = get_credentials()
-    print("Access Token:", creds.token)
-    print("Refresh Token:", creds.refresh_token)
-    print("Client ID:", creds.client_id)
-    print("Client Secret:", creds.client_secret)
+    with open(".env", "w") as f:
+        f.write(f"REFRESH_TOKEN={creds.refresh_token}\n")
+        f.write(f"CLIENT_ID={creds.client_id}\n")
+        f.write(f"CLIENT_SECRET={creds.client_secret}\n")
